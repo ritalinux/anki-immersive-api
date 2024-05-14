@@ -1,15 +1,15 @@
-from templates.immersive import ImmersiveTemplate
+from v1.templates.polyglot import ImmersiveTemplate
+import v1.utils import get_randon_id
 
 import requests
 import genanki
 import pytube
-import utils
 import re
 
 class ImmersiveRoutine:
     def __init__(self, deck_name, file_output, prhase):
         self.deck = genanki.Deck(
-            utils.get_randon_id(),
+            get_randon_id(),
             deck_name
         )
         self.file_output = file_output

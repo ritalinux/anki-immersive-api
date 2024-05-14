@@ -1,19 +1,18 @@
-import genanki
-import utils
+v1.templates import BaseTemplate
 
-class ImmersiveTemplate:
-    def __init__(self, css=None, custom_header=None):
+import genanki
+
+"""
+    This contains the following templates:
+        - ImmersiveTemplate
+"""
+
+### For easy reading, search in this file
+### the template that you want like ctrl+f 
+
+class ImmersiveTemplate(BaseTemplate):
+    def __init__(self,):
         self.name = "Immersive template"
-        self.card_header = custom_header or ""
-        self.css = css or """
-            .card {
-                font-family: arial;
-                font-size: 20px;
-                text-align: center;
-                color: black;
-                background-color: white;
-            }
-        """
         self.fields = [
             {'name': 'Audio'},
             {'name': 'Audio2'},
@@ -23,7 +22,6 @@ class ImmersiveTemplate:
             {'name': 'Significado'},
         ]
         self.default_template = {
-            'name': 'Card 1',
             'qfmt': """
                 {{Audio}}
                 {{Audio2}}
@@ -43,11 +41,3 @@ class ImmersiveTemplate:
             """,
         }
     
-    def make_template(self):
-        return genanki.Model(
-            utils.get_randon_id(),
-            self.name,
-            css=self.css,
-            fields=self.fields,
-            templates=[self.default_template]
-        )
