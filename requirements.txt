@@ -1,0 +1,7 @@
+ipdb
+requests==2.31.0
+pytube==15.0.0
+genanki==0.13.1
+
+
+
