@@ -1,5 +1,5 @@
 from v1.templates.polyglot import ImmersiveTemplate
-import v1.utils import get_randon_id
+from v1.utils import get_randon_id
 
 import requests
 import genanki
@@ -26,9 +26,9 @@ class ImmersiveRoutine:
         note = genanki.Note(
             model=model.make_template(),
             fields=[
-                f'[sound:{}.mp3]',
-                f'[sound:{}.mp3]',
-                f'[sound:{}.mp3]',
+                f'[sound:{1}.mp3]',
+                f'[sound:{2}.mp3]',
+                f'[sound:{3}.mp3]',
                 'oioioi',
                 '',
                 ''
