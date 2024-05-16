@@ -1,7 +1,5 @@
 from v1.templates.polyglot import ImmersiveTemplate
-
 from v1.utils import get_randon_id
-
 
 import genanki
 import pytube
@@ -26,7 +24,7 @@ class ImmersiveRoutine:
             raise FileFormatError(f"Invalid columns format in {file['name']}")
 
         if file['content']['phrase'].null_count() > 0:
-            raise FileFormatError(f"Prhase column can't have null values")
+            raise FileFormatError(f"Phrase column can't have null values")
 
         deck = genanki.Deck(
             get_randon_id(),
@@ -41,9 +39,9 @@ class ImmersiveRoutine:
             note = genanki.Note(
                 model=model,
                 fields=[
-                    f'[sound:{audio_name}-{1}.mp3]',
-                    f'[sound:{audio_name}-{2}.mp3]',
-                    f'[sound:{audio_name}-{3}.mp3]',
+                    f'[sound:{audio_name}-1.mp3]',
+                    f'[sound:{audio_name}-2.mp3]',
+                    f'[sound:{audio_name}-3.mp3]',
                     row['phrase'],
                     row['translation'] or str(),
                     row['meaning'] or str()
