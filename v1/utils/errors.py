@@ -10,3 +10,9 @@ class BaseError(Exception):
 
 class CardRequiredFieldError(BaseError):
     ...
+
+class CardMissingFieldsError(BaseError):
+    ...
+
+class FileFormatError(BaseError):
+    ...

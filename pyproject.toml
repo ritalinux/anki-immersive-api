@@ -5,6 +5,7 @@ description = "API to automate the generation of some immersive anki card templa
 authors = ["ritalinux <wedrano1999@gmail.com>"]
 license = "LICENSE"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -12,7 +13,8 @@ fastapi = "0.111.0"
 genanki = "0.13.1"
 pytube = "15.0.0"
 httpx = "^0.27.0"
-fastapi-restful = "^0.6.0"
+python-multipart = "^0.0.9"
+polars = "^0.20.26"
 
 [tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.13"

@@ -1,15 +1,7 @@
-from fastapi import FastAPI
-from fastapi_utils import Api
+from v1.services.polyglot_services import router as polyglot_router
 
-def create_app():
-    app = FastAPI()
-    api = Api(app)
+from fastapi import APIRouter
 
-    myapi = MyApi()
-    api.add_resource(myapi, "/uri", )
 
-    @app.get('/')
-    def home():
-        return {'hello': 'world'}
-
-    return app
+app_v1 = APIRouter(prefix='/v1')
+app_v1.include_router(polyglot_router)
