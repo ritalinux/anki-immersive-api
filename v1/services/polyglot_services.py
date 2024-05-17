@@ -10,6 +10,12 @@ router = APIRouter(
     prefix='/polyglot'
 )
 
+### Routines are instantiate outside services scope to
+### prevent new routines constructions in each request.
+### Be careful with unnecessary cache in construct methods,
+### it may be a security risk or a trigger for bugs.
+immersive_routine = ImmersiveRoutine()
+
 @router.post("/immersive")
 async def immersive_service(file: UploadFile):
     """
@@ -25,7 +31,6 @@ async def immersive_service(file: UploadFile):
         'content': pl.read_csv(file.file)
     }
 
-    routine = ImmersiveRoutine()
-    anki_deck = await routine.run(file)
+    anki_deck = await immersive_routine.run(file)
 
     return {"filename": f"{file['name']}.{file['type']}"}

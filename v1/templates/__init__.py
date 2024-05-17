@@ -4,15 +4,16 @@ from v1.utils.errors import CardRequiredFieldError, CardMissingFieldsError
 import genanki
 
 class BaseTemplate:
-    def __init__(self, css=None, card_header=None):
+    def __new__(cls):
+        self = super().__new__(cls)
         self.name = str()
         self.name_is_required = True
         
-        self.card_header = card_header or str()
+        self.card_header = str()
         self.card_header_is_required = False
         
         self.css_is_required = False
-        self.css = (css or str()) + """
+        self.css = """
             .card {
                 font-family: arial;
                 font-size: 20px;
@@ -36,8 +37,12 @@ class BaseTemplate:
             'qfmt': None,
             'afmt': None,
         }
+        return self
 
-    def make_template(self):
+    def __init__(self):
+        self.__check_integrity()
+
+    def __check_integrity(self):
         if self.name_is_required and not self.name:
             raise CardRequiredFieldError(
                 f"Attribute 'name' not implemented in {self.__class__}"
@@ -88,15 +93,19 @@ class BaseTemplate:
             if not field in self.default_template['afmt']:
                 raise CardMissingFieldsError(f"Missing field {field} in {self.__class__.__name__} back side generation.")
         
-        fields = []
-        [fields.append(f) for f in self.output_front_fields if f not in fields]
-        [fields.append(f) for f in self.output_back_fields if f not in fields]
-        fields = [{'name': f} for f in fields]
+        self.fields = []
+        [self.fields.append(f) for f in self.output_front_fields if f not in self.fields]
+        [self.fields.append(f) for f in self.output_back_fields if f not in self.fields]
+        self.fields = [{'name': f} for f in fields]
+
+    def make_template(self, custom_css="", card_header=""):
+        self.card_header = card_header or self.card_header
+        self.css = self.css + custom_css # first is our in case the client want to overwrite it
 
         return genanki.Model(
             get_randon_id(),
             self.name,
             css=self.css,
-            fields=fields,
+            fields=self.fields,
             templates=[self.default_template]
         )

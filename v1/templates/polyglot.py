@@ -12,8 +12,8 @@ import genanki
 ### with ctrl+f (or somenthing like)
 
 class ImmersiveTemplate(BaseTemplate):
-    def __init__(self, css=None, card_header=None):
-        super().__init__(css, card_header)
+    def __new__(cls):
+        self = super().__new__(cls)
 
         self.name = "Immersive template"
         self.input_required_fields = [
@@ -41,3 +41,4 @@ class ImmersiveTemplate(BaseTemplate):
             <h3>Significado</h3>
             <div style='font-family: Arial; font-size: 20px;'>{{meaning}}</div>
         """
+        return self

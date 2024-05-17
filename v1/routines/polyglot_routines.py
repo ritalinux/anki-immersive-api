@@ -33,7 +33,6 @@ class ImmersiveRoutine:
 
         medias = []
         model = self.template.make_template()
-
         for row in file['content'].to_dicts():
             audio_name = row['phrase'][:30]
             note = genanki.Note(
