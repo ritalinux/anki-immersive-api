@@ -49,11 +49,8 @@ class ImmersiveRoutine:
 
             deck.add_note(note)
 
-        package = genanki.Package(deck)
+        package = genanki.Package(deck_or_decks=deck, media_files=media)
 
-        if medias:
-            package.media_files = medias
-        
         package.write_to_file(f"{file['name']}.apkg")
 
 

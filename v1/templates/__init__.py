@@ -96,7 +96,7 @@ class BaseTemplate:
         self.fields = []
         [self.fields.append(f) for f in self.output_front_fields if f not in self.fields]
         [self.fields.append(f) for f in self.output_back_fields if f not in self.fields]
-        self.fields = [{'name': f} for f in fields]
+        self.fields = [{'name': f} for f in self.fields]
 
     def make_template(self, custom_css="", card_header=""):
         self.card_header = card_header or self.card_header

@@ -1,7 +1,5 @@
 from v1.templates import BaseTemplate
 
-import genanki
-
 """
     This contains the following templates:
         - ImmersiveTemplate
